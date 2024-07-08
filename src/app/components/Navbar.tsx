@@ -1,3 +1,4 @@
+import { SignIn, SignInButton, SignUpButton } from '@clerk/nextjs';
 import Link from 'next/link';
 
 const Navbar = () => {
@@ -21,8 +22,9 @@ const Navbar = () => {
             </div>
           </div>
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-            <Link href="/signin" className="text-gray-900 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium">Sign in</Link>
-            <Link href="/signup" className="ml-2 text-gray-900 border border-purple-600 hover:bg-purple-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Sign up</Link>
+            
+            <SignInButton className="text-gray-900 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium"/>
+            <SignUpButton className="ml-2 text-gray-900 border border-purple-600 hover:bg-purple-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition" />
           </div>
         </div>
       </div>
