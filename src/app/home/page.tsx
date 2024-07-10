@@ -1,5 +1,5 @@
 // src/app/Home/page.tsx
-import Navbar from '../components/Navbar';
+import Navbar from '../../components/Navbar';
 
 const Home = () => {
   return (

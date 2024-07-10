@@ -1,4 +1,3 @@
-
 import {
   ClerkProvider,
   SignInButton,
@@ -6,7 +5,11 @@ import {
   SignedOut,
   UserButton
 } from '@clerk/nextjs'
+import { Nunito } from "next/font/google";
 import './globals.css'
+
+const font = Nunito ({subsets : ["latin"]})
+
 export default function RootLayout({
   children,
 }: {
@@ -15,7 +18,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body>
+        <body className={font.className}>
           {/* <SignedOut>
             <SignInButton />
           </SignedOut>

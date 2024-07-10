@@ -1,4 +1,4 @@
-import { SignIn, SignInButton, SignUpButton } from '@clerk/nextjs';
+import { SignedIn, SignedOut, SignIn, SignInButton, SignUpButton, UserButton } from '@clerk/nextjs';
 import Link from 'next/link';
 
 const Navbar = () => {
@@ -12,7 +12,7 @@ const Navbar = () => {
             </div>
             <div className="hidden sm:block sm:ml-6">
               <div className="flex space-x-4">
-                <Link href="/home" className="text-gray-900 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium">Home</Link>
+                <Link href="/" className="text-gray-900 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium">Home</Link>
                 <Link href="/review" className="text-gray-900 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium">Review</Link>
                 <Link href="/learn" className="text-gray-900 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium">Learn</Link>
                 <Link href="/classes" className="text-gray-900 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium">Classes</Link>
@@ -23,8 +23,14 @@ const Navbar = () => {
           </div>
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
             
+          <SignedOut>
             <SignInButton className="text-gray-900 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium"/>
             <SignUpButton className="ml-2 text-gray-900 border border-purple-600 hover:bg-purple-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition" />
+          </SignedOut>
+          <SignedIn>
+                <Link href="/dashboard" className="text-gray-900 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium">Dashboard</Link>
+                <UserButton />
+          </SignedIn>
           </div>
         </div>
       </div>
