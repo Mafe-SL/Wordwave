@@ -1,5 +1,7 @@
-import { SignedIn, SignedOut, SignIn, SignInButton, SignUpButton, UserButton } from '@clerk/nextjs';
+import { ClerkLoaded, ClerkLoading, SignedIn, SignedOut, SignIn, SignInButton, SignUpButton, UserButton } from '@clerk/nextjs';
 import Link from 'next/link';
+import {Loader} from "lucide-react";
+import { Button } from '@/components/ui/button';
 
 const Navbar = () => {
   return (
@@ -22,15 +24,27 @@ const Navbar = () => {
             </div>
           </div>
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-            
+          <ClerkLoading>
+          <Loader className='h-5 w-5 animate-spin' />
+          </ClerkLoading>
+          <ClerkLoaded>
           <SignedOut>
-            <SignInButton className="text-gray-900 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium"/>
-            <SignUpButton className="ml-2 text-gray-900 border border-purple-600 hover:bg-purple-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition" />
+            <SignInButton mode='modal'>
+              <Button size={"lg"} variant={"primary"}>
+                Sign In
+              </Button>
+            </SignInButton>
+            <SignUpButton mode='modal'>
+              <Button size={"lg"} variant={"primaryOutline"}>
+                Sign Up
+              </Button>
+            </SignUpButton>
           </SignedOut>
           <SignedIn>
-                <Link href="/dashboard" className="text-gray-900 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium">Dashboard</Link>
-                <UserButton />
+                <Link href="/learn" className="text-gray-900 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium">Dashboard</Link>
+                <UserButton afterSignOutUrl='/' />
           </SignedIn>
+          </ClerkLoaded>
           </div>
         </div>
       </div>
