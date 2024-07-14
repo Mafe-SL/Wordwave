@@ -1,10 +1,8 @@
 // src/app/Home/page.tsx
-import Navbar from '../components/Navbar';
 
 const Home = () => {
   return (
     <div>
-      <Navbar />
       <main className="flex flex-col items-center justify-center min-h-screen py-2 bg-gray-50">
         <div className="text-center">
           <h1 className="text-4xl font-extrabold text-gray-900">
