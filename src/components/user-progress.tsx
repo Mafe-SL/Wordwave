@@ -2,12 +2,11 @@ import Link from "next/link";
 import { Button } from "./ui/button";
 import Image from "next/image";
 import { InfinityIcon } from "lucide-react";
+import Courses, { ICourse } from "@/models/Courses";
+import userProgress from "@/models/userProgress";
 
 type Props = {
- activeCourse: {
-    imageSrc: string,
-    title: string
- },
+ activeCourse: ICourse,
  hearts: number,
  points: number,
  hasActiveSubscription: boolean
@@ -18,6 +17,7 @@ export const UserProgress = ({
     points,
     hasActiveSubscription
 }: Props) => {
+    
     return ( 
         <div className="flex items-center justify-between gap-x-2 w-full">
             <Link href={"/courses"}>

@@ -17,13 +17,13 @@ export const List = ({ courses, activeCourseId }: Props) => {
     const router = useRouter()
     const [pending, startTransition] = useTransition()
 
-    const onClick = (id: string) => {
+    const onClick = (_id: string) => {
         if (pending) return
-        if (id === activeCourseId) {
+        if (_id === activeCourseId) {
             return router.push("/learn")
         }
         startTransition(() => {
-            upsertUserProgress(id)
+            upsertUserProgress(_id)
             .catch(() => {
                 toast.error("Something went wrong")
             })

@@ -27,10 +27,9 @@ export const getUserProgress = cache(async () => {
 
   const data = await UserProgress.findOne({ userId }).populate<{ activeCourseId: ICourse }>('activeCourseId').lean<IUserProgress>();
 
-  console.log('UserProgress data:', JSON.stringify(data, null, 2));
 
   if (data) {
-    return toPlainObject( {
+    return toPlainObject({
       ...data,
       activeCourseId: data.activeCourseId._id.toString()
     });

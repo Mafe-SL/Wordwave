@@ -27,7 +27,11 @@ export const upsertUserProgress = async (courseId: string) => {
     const exixstingUserProgress = await getUserProgress()
 
     if (exixstingUserProgress) {
-        await userProgress.updateOne({})
+        await userProgress.updateOne({
+            activeCourseId: courseId,
+            userName: user.firstName || 'User',
+            userImageSrc: user.imageUrl || '/mascot.svg'
+        })
         revalidatePath("/courses")
     revalidatePath("/learn")
     redirect("/learn")
@@ -36,6 +40,8 @@ export const upsertUserProgress = async (courseId: string) => {
     await userProgress.insertMany({
         userId,
         activeCourseId: courseId,
+        userName: user.firstName || 'User',
+        userImageSrc: user.imageUrl || '/mascot.svg'
 
     })
 
