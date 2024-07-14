@@ -4,31 +4,28 @@ import { Header } from './header'
 import { UserProgress } from '@/components/user-progress'
 import { getUserProgress } from '@/db/queries'
 import { redirect } from "next/navigation";
+import { ICourse } from '@/models/Courses';
 
 const DashboardPage = async () => {
-  const userProgressData = getUserProgress()
+  const userProgressData = await getUserProgress()
 
-  const [
-    userProgress
-  ] = await Promise.all([
-    userProgressData
-  ])
-
-  if (!userProgress || !userProgress.activeCourseId) {
+  if (!userProgressData || !userProgressData.activeCourseId) {
     redirect("/courses")
   }
+
+  const activeCourse = userProgressData.activeCourseId as ICourse;
 
   return (
     <div className='flex flex-row-reverse gap-[48px] px-6'>
       <StickyWrapper>
         <UserProgress 
-        activeCourse={userProgress.activeCourseId} 
-        hearts={userProgress.hearts} 
-        points={userProgress.points}
-        hasActiveSubscription={false} />
+          activeCourse={activeCourse}
+          hearts={userProgressData.hearts} 
+          points={userProgressData.points}
+          hasActiveSubscription={false} />
       </StickyWrapper>
       <FeedWrapper>
-        <Header title={userProgress.activeCourseId} />
+        <Header title={activeCourse.title} />
       </FeedWrapper>
     </div>
   )

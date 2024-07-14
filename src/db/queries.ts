@@ -31,7 +31,7 @@ export const getUserProgress = cache(async () => {
   if (data) {
     return toPlainObject({
       ...data,
-      activeCourseId: data.activeCourseId._id.toString()
+      activeCourseId: data.activeCourseId
     });
   }
 
