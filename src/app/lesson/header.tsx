@@ -24,7 +24,7 @@ export const Header = ({
             <div className="text-rose-500 flex items-center font-bold">
                 <Image src={"/heart.svg"} alt="heart" height={28} width={28} className="mr-2" />
                 {
-                    hasActiveSubscription ? <InfinityIcon className="h-6 w-6 stroke-[3]" />
+                    hasActiveSubscription ? <InfinityIcon className="h-6 w-6 stroke-[3] shrink-0" />
                     : hearts
                 }
             </div>
