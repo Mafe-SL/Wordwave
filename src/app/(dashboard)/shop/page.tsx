@@ -5,6 +5,8 @@ import { redirect } from "next/navigation";
 import { FeedWrapper } from "@/components/feed-wrapper";
 import Image from "next/image";
 import { Items } from "./items";
+import { Promo } from "@/components/promo";
+import { Quests } from "@/components/quests";
 
 const ShopPage = async () => {
 
@@ -21,6 +23,7 @@ const ShopPage = async () => {
     if (!userProgress || !userProgress.activeCourse) {
         redirect("/courses")
     }
+    const isPro = !!userSubsription?.isActive
     return ( 
         <div className="flex flex-row-reverse gap-[48px] px-6">
             <StickyWrapper>
@@ -28,8 +31,12 @@ const ShopPage = async () => {
                  activeCourse={userProgress.activeCourse}
                  hearts={userProgress.hearts}
                  points={userProgress.points}
-                 hasActiveSubscription={!!userSubsription?.isActive}
+                 hasActiveSubscription={isPro}
                 />
+                {!isPro && (
+                    <Promo />
+                )}
+                <Quests points={userProgress.points} />
             </StickyWrapper>
             <FeedWrapper>
                 <div className="w-full flex flex-col items-center">

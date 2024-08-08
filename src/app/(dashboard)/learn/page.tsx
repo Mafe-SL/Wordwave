@@ -6,6 +6,8 @@ import { redirect } from "next/navigation";
 import { getCourseProgress, getLessonPercentage, getUnits, getUserProgress, getUserSubscription } from '../../../../db/queries';
 import { Unit } from './unit';
 import { lessons, units as unitsSchema } from '../../../../db/schema'
+import { Promo } from '@/components/promo';
+import { Quests } from '@/components/quests';
 
 const DashboardPage = async () => {
   const userProgressData = getUserProgress()
@@ -36,6 +38,7 @@ const DashboardPage = async () => {
     redirect("/courses")
   }
 
+  const isPro = !!userSubsription?.isActive
 
   return (
     <div className='flex flex-row-reverse gap-[48px] px-6'>
@@ -44,7 +47,13 @@ const DashboardPage = async () => {
           activeCourse={userProgress.activeCourse}
           hearts={userProgress.hearts} 
           points={userProgress.points}
-          hasActiveSubscription={!!userSubsription?.isActive} />
+          hasActiveSubscription={isPro} />
+          {!isPro && (
+            <Promo />
+          )}
+          <Quests 
+            points={userProgress.points}
+          />
       </StickyWrapper>
       <FeedWrapper>
         <Header title={userProgress.activeCourse.title} />

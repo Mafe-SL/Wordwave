@@ -6,6 +6,8 @@ import { FeedWrapper } from "@/components/feed-wrapper";
 import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
+import { Promo } from "@/components/promo";
+import { Quests } from "@/components/quests";
 
 const LeaderboardPage = async () => {
 
@@ -27,6 +29,8 @@ const LeaderboardPage = async () => {
     if (!userProgress || !userProgress.activeCourse) {
         redirect("/courses")
     }
+
+    const isPro = !!userSubsription?.isActive
     return ( 
         <div className="flex flex-row-reverse gap-[48px] px-6">
             <StickyWrapper>
@@ -34,8 +38,13 @@ const LeaderboardPage = async () => {
                  activeCourse={userProgress.activeCourse}
                  hearts={userProgress.hearts}
                  points={userProgress.points}
-                 hasActiveSubscription={!!userSubsription?.isActive}
+                 hasActiveSubscription={isPro}
                 />
+                {!isPro && (
+                    <Promo />
+                )}
+                <Quests points={userProgress.points} />
+
             </StickyWrapper>
             <FeedWrapper>
                 <div className="w-full flex flex-col items-center">
