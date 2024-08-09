@@ -11,7 +11,7 @@ const Home = () => {
             <span className="text-purple-600">open a world of possibilities</span>
           </h1>
           <p className="mt-3 text-gray-500">
-            Unlock your potential with our innovative, personalized language learning platform. From beginner to fluent, we're with you every step of the way.
+            Unlock your potential with our innovative, personalized language learning platform. From beginner to fluent, we are with you every step of the way.
           </p>
           <div className="mt-5 flex justify-center">
             <button className="bg-purple-600 text-white font-bold py-2 px-4 rounded mr-2">Empieza ahora</button>
